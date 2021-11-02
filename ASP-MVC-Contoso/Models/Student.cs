@@ -12,5 +12,10 @@ namespace ASP_MVC_Contoso.Models
 
         // Relationships or navigation properties
         public virtual ICollection<Enrollment> Enrollments { get; set; }
+
+        public string FullName ()
+        {
+            return FirstName + " " + LastName;
+        }
     }
 }

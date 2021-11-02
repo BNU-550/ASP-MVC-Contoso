@@ -34,7 +34,11 @@ namespace ASP_MVC_Contoso.Controllers
             }
 
             var student = await _context.Students
-                .FirstOrDefaultAsync(m => m.StudentID == id);
+                  .Include(s => s.Enrollments)
+                      .ThenInclude(e => e.Course)
+                  .AsNoTracking()
+                  .FirstOrDefaultAsync(m => m.StudentID == id);
+
             if (student == null)
             {
                 return NotFound();
